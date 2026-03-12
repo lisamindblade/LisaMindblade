@@ -1,0 +1,20 @@
+{
+  "version": "1.0",
+  "event_id": "95d0e534-c365-4d31-afd8-28a3bdad258c",
+  "timestamp": "2026-03-12T18:30:10Z",
+  "session_id": "6fcae3fd-28db-4cbe-a959-9f2058f71957",
+  "surface": "iphone",
+  "type": "action.proposed",
+  "payload": {
+    "action_id": "a-msg-001",
+    "action_type": "send_message",
+    "parameters": {
+      "recipient": "Alex",
+      "message": "Running 10 minutes late."
+    },
+    "title": "Send message",
+    "summary": "Send message to Alex.",
+    "risk": "medium",
+    "requires_confirmation": true
+  }
+}

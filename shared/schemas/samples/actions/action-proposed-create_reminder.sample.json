@@ -1,0 +1,20 @@
+{
+  "version": "1.0",
+  "event_id": "2ddf089d-cf45-4236-9af0-1276f58abb81",
+  "timestamp": "2026-03-12T18:30:20Z",
+  "session_id": "6fcae3fd-28db-4cbe-a959-9f2058f71957",
+  "surface": "iphone",
+  "type": "action.proposed",
+  "payload": {
+    "action_id": "a-rem-001",
+    "action_type": "create_reminder",
+    "parameters": {
+      "title": "Buy milk",
+      "due_at_iso": "2026-03-12T20:00:00Z"
+    },
+    "title": "Create reminder",
+    "summary": "Create reminder for later today.",
+    "risk": "low",
+    "requires_confirmation": false
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "version": "1.0",
+  "event_id": "ec754f4c-0a8e-42fa-a669-23757bc6f8c8",
+  "timestamp": "2026-03-12T18:00:04Z",
+  "session_id": "f4f95e19-e70a-4a5a-8a4e-b5f15ff2e8d5",
+  "surface": "iphone",
+  "type": "action.confirmation_required",
+  "payload": {
+    "action_id": "send_message_123",
+    "reason": "Please confirm before sending this message."
+  }
+}

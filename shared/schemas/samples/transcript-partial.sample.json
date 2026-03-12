@@ -1,0 +1,11 @@
+{
+  "version": "1.0",
+  "event_id": "8f37db4f-a5be-491e-a100-704ccf9e42aa",
+  "timestamp": "2026-03-12T18:00:02Z",
+  "session_id": "f4f95e19-e70a-4a5a-8a4e-b5f15ff2e8d5",
+  "surface": "iphone",
+  "type": "transcript.partial",
+  "payload": {
+    "text": "send a message to alex"
+  }
+}

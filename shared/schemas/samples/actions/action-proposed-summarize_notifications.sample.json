@@ -1,0 +1,19 @@
+{
+  "version": "1.0",
+  "event_id": "0f864f5c-08d8-4dc4-b14a-7bc94437810d",
+  "timestamp": "2026-03-12T18:30:30Z",
+  "session_id": "6fcae3fd-28db-4cbe-a959-9f2058f71957",
+  "surface": "iphone",
+  "type": "action.proposed",
+  "payload": {
+    "action_id": "a-notif-001",
+    "action_type": "summarize_notifications",
+    "parameters": {
+      "window_minutes": 120
+    },
+    "title": "Summarize notifications",
+    "summary": "Summarize recent notifications.",
+    "risk": "low",
+    "requires_confirmation": false
+  }
+}

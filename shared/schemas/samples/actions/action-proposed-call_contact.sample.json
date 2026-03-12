@@ -1,0 +1,19 @@
+{
+  "version": "1.0",
+  "event_id": "3a930cb8-5381-43d4-847d-4f5f95945610",
+  "timestamp": "2026-03-12T18:30:40Z",
+  "session_id": "6fcae3fd-28db-4cbe-a959-9f2058f71957",
+  "surface": "iphone",
+  "type": "action.proposed",
+  "payload": {
+    "action_id": "a-call-001",
+    "action_type": "call_contact",
+    "parameters": {
+      "contact_name": "Jordan"
+    },
+    "title": "Call contact",
+    "summary": "Place a call to Jordan.",
+    "risk": "medium",
+    "requires_confirmation": true
+  }
+}

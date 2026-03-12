@@ -1,0 +1,12 @@
+{
+  "version": "1.0",
+  "event_id": "d6cf6f65-8e37-4f60-92dc-f48d17f36ca8",
+  "timestamp": "2026-03-12T18:00:00Z",
+  "session_id": "f4f95e19-e70a-4a5a-8a4e-b5f15ff2e8d5",
+  "surface": "iphone",
+  "type": "session.start",
+  "payload": {
+    "client_version": "0.1.0",
+    "auth_token": "replace-with-shared-token"
+  }
+}

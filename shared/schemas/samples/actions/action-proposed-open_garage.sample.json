@@ -1,0 +1,19 @@
+{
+  "version": "1.0",
+  "event_id": "7f3f2e6e-5d6f-46f0-883e-f53fca43d932",
+  "timestamp": "2026-03-12T18:30:50Z",
+  "session_id": "6fcae3fd-28db-4cbe-a959-9f2058f71957",
+  "surface": "iphone",
+  "type": "action.proposed",
+  "payload": {
+    "action_id": "a-garage-001",
+    "action_type": "open_garage",
+    "parameters": {
+      "door_id": "main"
+    },
+    "title": "Open garage",
+    "summary": "Open the main garage door.",
+    "risk": "high",
+    "requires_confirmation": true
+  }
+}

@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://lisamindblade.local/schemas/event-envelope.schema.json",
+  "title": "EventEnvelope",
+  "type": "object",
+  "required": [
+    "version",
+    "event_id",
+    "timestamp",
+    "session_id",
+    "surface",
+    "type",
+    "payload"
+  ],
+  "properties": {
+    "version": {
+      "type": "string",
+      "const": "1.0"
+    },
+    "event_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "session_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "surface": {
+      "type": "string",
+      "enum": ["iphone", "carplay", "watch"]
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "session.start",
+        "transcript.partial",
+        "transcript.final",
+        "assistant.thinking",
+        "assistant.response.chunk",
+        "assistant.response.final",
+        "action.proposed",
+        "action.confirmation_required",
+        "session.end",
+        "error"
+      ]
+    },
+    "payload": {
+      "type": "object",
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": false
+}

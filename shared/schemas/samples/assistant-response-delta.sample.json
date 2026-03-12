@@ -1,0 +1,12 @@
+{
+  "version": "1.0",
+  "event_id": "5f36f261-6b1f-49e8-a858-ab3f24f51e2d",
+  "timestamp": "2026-03-12T18:00:03Z",
+  "session_id": "f4f95e19-e70a-4a5a-8a4e-b5f15ff2e8d5",
+  "surface": "iphone",
+  "type": "assistant.response.chunk",
+  "payload": {
+    "turn_id": "turn-001",
+    "text": "I can help with that..."
+  }
+}

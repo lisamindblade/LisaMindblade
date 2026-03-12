@@ -1,0 +1,19 @@
+{
+  "version": "1.0",
+  "event_id": "6d4b93b3-dfca-4c8e-a3d5-48d2eddd7c7c",
+  "timestamp": "2026-03-12T18:30:00Z",
+  "session_id": "6fcae3fd-28db-4cbe-a959-9f2058f71957",
+  "surface": "iphone",
+  "type": "action.proposed",
+  "payload": {
+    "action_id": "a-nav-001",
+    "action_type": "navigate_to_destination",
+    "parameters": {
+      "destination": "1 Infinite Loop, Cupertino"
+    },
+    "title": "Navigate to destination",
+    "summary": "Start turn-by-turn navigation.",
+    "risk": "low",
+    "requires_confirmation": false
+  }
+}

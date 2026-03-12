@@ -1,0 +1,12 @@
+{
+  "version": "1.0",
+  "event_id": "0c2aa5ef-0bf3-49a1-8186-a15f4aa86853",
+  "timestamp": "2026-03-12T18:00:00Z",
+  "session_id": "f4f95e19-e70a-4a5a-8a4e-b5f15ff2e8d5",
+  "surface": "iphone",
+  "type": "action.confirmation_required",
+  "payload": {
+    "action_id": "send_message_123",
+    "reason": "This action sends an external message and requires confirmation."
+  }
+}
