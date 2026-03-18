@@ -29,6 +29,22 @@ final class ConnectionManager: ObservableObject {
         self.audioPlayback = audioPlayback ?? AVSpeechAudioPlaybackService()
     }
 
+    func availablePlaybackVoices() -> [SpeechVoiceOption] {
+        audioPlayback.availableVoices()
+    }
+
+    func selectedPlaybackVoiceIdentifier() -> String? {
+        audioPlayback.selectedVoiceIdentifier()
+    }
+
+    func setPlaybackVoice(identifier: String?) {
+        audioPlayback.setPreferredVoice(identifier: identifier)
+    }
+
+    func requestPersonalVoiceAuthorizationIfNeeded() async {
+        await audioPlayback.requestPersonalVoiceAuthorizationIfNeeded()
+    }
+
     private func bindPlaybackCallbacks(to appState: AppState) {
         audioPlayback.onPlaybackStateChanged = { [weak appState] isActive in
             guard let appState else { return }

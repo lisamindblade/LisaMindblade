@@ -1,0 +1,6 @@
+docker rm -f searxng
+docker run -d \
+  --name searxng \
+  -p 8080:8080 \
+  -v ~/searxng/settings.yml:/etc/searxng/settings.yml \
+  searxng/searxng

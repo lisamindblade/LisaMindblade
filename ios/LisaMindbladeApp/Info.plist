@@ -26,6 +26,8 @@
 	<string>LisaMindblade uses the microphone for push-to-talk voice input.</string>
 	<key>NSSpeechRecognitionUsageDescription</key>
 	<string>LisaMindblade transcribes your speech for assistant interactions.</string>
+	<key>NSPersonalVoiceUsageDescription</key>
+	<string>LisaMindblade can use your Personal Voice for spoken responses.</string>
 	<key>NSLocalNetworkUsageDescription</key>
 	<string>LisaMindblade connects to your local Mac mini assistant backend.</string>
 	<key>NSAppTransportSecurity</key>

@@ -4,6 +4,9 @@ struct PushToTalkView: View {
     @EnvironmentObject private var appState: AppState
     @ObservedObject var connectionManager: ConnectionManager
 
+    @State private var voiceOptions: [SpeechVoiceOption] = []
+    @State private var selectedVoiceID: String = ""
+
     private var isListening: Bool {
         appState.clientState == .listening
     }
@@ -27,6 +30,28 @@ struct PushToTalkView: View {
         )
     }
 
+    private var latestMeText: String? {
+        let live = appState.liveTranscript.trimmingCharacters(in: .whitespacesAndNewlines)
+        if !live.isEmpty {
+            return live
+        }
+
+        let previous = appState.transcriptHistory.last?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
+        return previous.isEmpty ? nil : previous
+    }
+
+    private var latestLisaText: String? {
+        let streaming = appState.streamingAssistantText
+            .replacingOccurrences(of: "\n", with: " ")
+            .trimmingCharacters(in: .whitespacesAndNewlines)
+        if !streaming.isEmpty {
+            return streaming
+        }
+
+        let previous = appState.assistantHistory.last?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
+        return previous.isEmpty ? nil : previous
+    }
+
     var body: some View {
         VStack(spacing: 24) {
             Spacer()
@@ -40,12 +65,46 @@ struct PushToTalkView: View {
                     .foregroundStyle(.secondary)
             }
 
-            if !appState.liveTranscript.isEmpty {
-                Text(appState.liveTranscript)
-                    .multilineTextAlignment(.center)
-                    .lineLimit(4)
-                    .padding(.horizontal, 24)
+            if !voiceOptions.isEmpty {
+                HStack(alignment: .center, spacing: 12) {
+                    Text("Voice")
+                        .font(.subheadline.weight(.semibold))
+
+                    Spacer()
+
+                    Picker("Voice", selection: $selectedVoiceID) {
+                        ForEach(voiceOptions) { option in
+                            Text(option.displayName)
+                                .tag(option.id)
+                        }
+                    }
+                    .pickerStyle(.menu)
+                }
+                .padding(.horizontal, 20)
             }
+
+            if latestMeText != nil || latestLisaText != nil {
+                VStack(alignment: .leading, spacing: 10) {
+                    if let latestMeText {
+                        Text("Me: \(latestMeText)")
+                            .font(.body)
+                            .foregroundStyle(.primary)
+                    }
+                    if let latestLisaText {
+                        Text("Lisa: \(latestLisaText)")
+                            .font(.body)
+                            .foregroundStyle(.primary)
+                    }
+                }
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .lineLimit(3)
+                .padding(14)
+                .background(Color(.secondarySystemBackground))
+                .cornerRadius(12)
+                .padding(.horizontal, 20)
+            }
+
+            Spacer(minLength: 34)
 
             if shouldShowLisaFigure {
                 Button {
@@ -105,6 +164,57 @@ struct PushToTalkView: View {
                 .font(.footnote)
         }
         .padding(.bottom, 24)
+        .onAppear {
+            Task {
+                await prepareVoiceOptions()
+            }
+        }
+        .onChange(of: selectedVoiceID) { _, newValue in
+            guard !newValue.isEmpty else { return }
+            connectionManager.setPlaybackVoice(identifier: newValue)
+        }
+    }
+
+    private func prepareVoiceOptions() async {
+        await connectionManager.requestPersonalVoiceAuthorizationIfNeeded()
+        reloadVoiceOptions()
+    }
+
+    private func reloadVoiceOptions() {
+        let options = connectionManager.availablePlaybackVoices()
+        voiceOptions = options
+
+        guard !options.isEmpty else {
+            selectedVoiceID = ""
+            return
+        }
+
+        if let current = connectionManager.selectedPlaybackVoiceIdentifier(),
+           options.contains(where: { $0.id == current }) {
+            selectedVoiceID = current
+            return
+        }
+
+        if let personalSFA = options.first(where: { option in
+            option.isPersonalVoice &&
+            option.name.compare("SFA", options: [.caseInsensitive, .diacriticInsensitive]) == .orderedSame
+        }) {
+            selectedVoiceID = personalSFA.id
+            connectionManager.setPlaybackVoice(identifier: personalSFA.id)
+            return
+        }
+
+        if let siriTwo = options.first(where: { option in
+            let lower = option.name.lowercased()
+            return lower.contains("siri") && (lower.contains("voice 2") || lower.contains("2"))
+        }) {
+            selectedVoiceID = siriTwo.id
+            connectionManager.setPlaybackVoice(identifier: siriTwo.id)
+            return
+        }
+
+        selectedVoiceID = options[0].id
+        connectionManager.setPlaybackVoice(identifier: options[0].id)
     }
 
     private var statusText: String? {
